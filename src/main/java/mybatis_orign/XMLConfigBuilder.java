@@ -10,10 +10,12 @@ import java.io.IOException;
 import java.util.HashMap;
 
 /**
- * 获取Congituration对象，对象中存有jdbc的配置和全路径方法名+sql语句+返回结果
+ * 依次读取SqlMapConfig.xml和其他接口映射配置的xml文件，获取数据配配置信息
+ *
  */
 public class XMLConfigBuilder {
     public static Configuration loadConfiguration(String config){
+        //使用jsoup解析SqlMapConfig.xml配置文件信息
         Configuration cfg=new Configuration();
         Document doc = null;
         try {
@@ -39,6 +41,8 @@ public class XMLConfigBuilder {
             }
         }
 
+
+        //使用jsoup解析映射文件的配置信息
         Elements mappersEles = doc.select("mappers mapper");
         HashMap<String, Mapper> mappers=null;
         if (mappersEles!=null){

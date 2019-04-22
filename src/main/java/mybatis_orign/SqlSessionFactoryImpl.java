@@ -14,15 +14,17 @@ public class SqlSessionFactoryImpl implements SqlSessionFactory {
 
     @Override
     public SqlSession openSqlSession() {
-
         try {
+            //获取数据库连接参数
             String driver = configuration.getDriver();
             String url = configuration.getUrl();
             String username = configuration.getUsername();
             String password = configuration.getPassword();
+            //获取映射配置文件参数
             Map<String, Mapper> mappers = configuration.getMappers();
-
+            //加载数据库驱动字节码，里面有静态方法会将驱动加载入内存
             Class.forName(driver);
+            
             Connection conn = DriverManager.getConnection(url, username, password);
             SqlSession sqlSession=new SqlSessionImpl(conn,mappers);
             return sqlSession;

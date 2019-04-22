@@ -8,9 +8,9 @@ public class SqlSessionFactoryBuilderImpl implements SqlSessionFactoryBuilder {
 
 
     /**
-     * 获取SqlSessionFactory
+     * 传入配置文件，生成sqlSessionFactory
      *
-     * @param pathname
+     * @param pathname SqlMapConfig.xml
      * @return
      */
     @Override
